@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the pangrams function below.
+string pangrams(string s) {
+    string alphabet {"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+    int i {};
+    char ch {};
+    for ( auto val : s){
+        if (isalpha(val)){
+            size_t position = alphabet.find(val);
+            if ( position != string::npos){
+               i++;
+               alphabet.erase(position, 1);
+               if (isupper(val)){
+                  ch = tolower(val);
+                  size_t sub = alphabet.find(ch);
+                  alphabet.erase(sub, 1);
+               }
+               else{
+                   ch =toupper(val);
+                   size_t sub = alphabet.find(ch);
+                   alphabet.erase(sub, 1);
+               }
+        }
+    }}
+    string s1 {"pangram"}, s2 {"not pangram"};
+    if ( i == 26)
+        return s1;
+    else 
+       return s2;
+
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s;
+    getline(cin, s);
+
+    string result = pangrams(s);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
