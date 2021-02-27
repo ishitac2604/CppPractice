@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+   string alphabet {"0ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvqxyz"};
+   string key {}, encrypted_m {}, message {}, decrypted_m {};
+   char selection, letter;
+    
+        cout << "Menu: " << endl;
+        cout << "A: Encrypt a message" << endl;
+        cout << "B: Decrypt a message" << endl;
+        cout << "Q: Quit" << endl;
+        
+    do{
+        cout << "Enter your selection: ";
+        cin >> selection;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        
+        for ( char val : alphabet){
+            size_t substitution = (int)val  + alphabet.find(val);
+            if (substitution > 126){
+                substitution = substitution - 93;}
+                letter = (char)substitution;
+                key.push_back(letter);}
+        
+        if ( selection == 'A' or selection == 'a'){
+            cout << "Please enter a message you want to encrypt: ";
+            getline(cin, message);
+            for (char val2 : message){
+            double positions = alphabet.find(val2);
+            if (isalpha(val2)){
+               encrypted_m.push_back(key.at(positions));}
+            else
+                encrypted_m.push_back(val2);
+                
+            }
+            cout << "Your encyrpted message is: " << encrypted_m << endl;
+            encrypted_m.clear();
+            
+        }
+        
+        else if ( selection == 'B' or selection == 'b'){
+            cout << "Please enter message you want to decrypt: ";
+            getline(cin, message);
+            for (char val3 : message){
+                 double positions = key.find(val3);
+                 if ( positions != string::npos){
+                     decrypted_m.push_back(alphabet.at(positions));}
+                 else
+                     decrypted_m.push_back(val3);
+                 }
+                 cout << "Your decrypted message is: " << decrypted_m << endl;
+            decrypted_m.clear();
+        }
+        
+        else
+            cout << "Wrong choice. Try again!" << endl;
+    
+    } while (selection != 'q' or selection != 'Q' );
+   
+    
+    return 0;
+}
