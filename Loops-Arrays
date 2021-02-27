@@ -1,0 +1,108 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main(){
+    bool flag {false}, check = false;
+    char selection {};
+    vector <int> list {};
+    
+    char options [14] {'p', 'P', 'q', 'Q', 'a', 'A', 'm', 'M', 's', 'S', 'l', 'L', 'd', 'D'};
+    
+    cout << "Menu: " << endl;
+    
+    cout << "P: Print numbers" << endl;
+    cout << "A: Add a number" << endl;
+    cout << "M: Display mean of the numbers" << endl;
+    cout << "S: Display the smallest number" << endl;
+    cout << "L: Display the largest number" << endl;
+    cout << "D: Number of times a number is present in the list" << endl;
+    cout << "Q: Quit" << endl;
+    
+    while (!flag){
+        cout << "Please Make a selection: ";
+        cin >> selection;
+        
+        for (int i = 0; i < 14; i++){
+            if ( selection == options [i]){
+                check = true;}
+            }
+        if (check == true){
+            cout << "You chose: " << selection << endl;
+            }
+        else{
+                cout << "Wrong input, try again." << endl;
+                flag = false;}
+        
+        check = false;
+    
+    if ( selection == 'P' || selection == 'p'){
+        if ( list.size() > 0){
+            cout << "The elements are: [ ";
+            for ( auto val : list){
+                cout << val << " ";}
+            cout << "]" << endl;
+        }
+        else
+            cout << "[]- The list is empty" << endl;
+    }
+    
+    if ( selection == 'a' || selection == 'A'){
+        cout << "Please enter the number you want to add to the list: ";
+        int num;
+        cin >> num;
+        list.push_back(num);
+        cout << num << " successfully added!" << endl;
+    }
+    
+     if ( selection == 'm' || selection == 'M'){
+        if (list.size() > 0){
+            int sum {};
+            for ( auto val : list){
+                sum += val;
+            }
+            cout << "The sum of numbers in the list is: " << sum << endl;
+        }
+        else
+            cout << "Unable to calculate the mean- no data\n";
+    }
+        if ( selection == 'q' || selection == 'Q'){
+            cout << "Goodbye!" << endl;
+            break;
+        }
+        
+        if (selection == 's' || selection == 'S'){
+            int min {list.at(0)};
+            for (auto val : list){
+                if ( val < min)
+                    min = val;
+            }
+            cout << "The minimum number is: " << min << endl;
+        }
+        
+        if (selection == 'l' || selection == 'L'){
+            int max {list.at(0)};
+            for (auto val : list){
+                if ( val > max)
+                    max = val;
+            }
+            cout << "The maximum number is: " << max << endl;
+        }
+        
+        if (selection == 'D' || selection == 'd'){
+            int n {}, val;
+            cout << "Please enter the number you want to search for: ";
+            cin >> val;
+            
+            for ( int j = 0; j < list.size(); j++){
+                if ( list.at(j) == val){
+                    n++;
+                }
+            }  cout << "The number of times " << val << " is repeated: " << n << endl;
+        }
+        
+}
+    
+    return 0;
+}
