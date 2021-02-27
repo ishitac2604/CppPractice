@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main(){
+    
+    string str {};
+    
+    
+    cout << "Enter the string: ";
+    getline(cin, str);
+    
+    size_t spaces = str.length();
+    
+    for ( int i = 1; i <= str.length(); i++){
+        
+        for (int k = 1; k <= spaces; k++)
+        cout << " ";
+        
+        cout << str.substr(0, i);
+        
+        int j = i - 1;
+        string shor {str.substr(0, j)};
+        reverse(shor.begin(), shor.end());
+        cout << shor;
+        
+        cout << endl;
+        spaces--;
+    }
+    return 0;
+}
