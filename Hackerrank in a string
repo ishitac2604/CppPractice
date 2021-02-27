@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the hackerrankInString function below.
+string hackerrankInString(string s) {
+ string to_match {"hackerrank"};
+    string new_s {};
+    int index {};
+    for ( auto val : to_match){
+        for ( int j = index; j < s.size(); j++){
+            if ( val == s.at(j)){
+                index = j;
+                index++;
+                new_s.push_back(val);
+                break;
+            }
+        }
+    }
+ string s1 {"YES"}, s2 {"NO"};
+    if ( to_match == new_s)
+       return s1;
+    else 
+      return s2; 
+
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    int q;
+    cin >> q;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    for (int q_itr = 0; q_itr < q; q_itr++) {
+        string s;
+        getline(cin, s);
+
+        string result = hackerrankInString(s);
+
+        fout << result << "\n";
+    }
+
+    fout.close();
+
+    return 0;
+}
